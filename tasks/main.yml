@@ -1,10 +1,10 @@
 ---
-- include: preflight.yml
+- import_tasks: preflight.yml
   tags:
     - openvpn_exporter_install
     - openvpn_exporter
 
-- include: install.yml
+- import_tasks: install.yml
   become: True
   tags:
     - openvpn_exporter_install
