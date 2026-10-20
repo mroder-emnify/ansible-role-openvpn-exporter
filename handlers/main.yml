@@ -3,3 +3,8 @@
   service:
     name: openvpn_exporter
     state: restarted
+  register: openvpn_exporter_restart
+  # In check mode on a fresh host the unit file is not written yet.
+  failed_when:
+    - openvpn_exporter_restart is failed
+    - not (ansible_check_mode and 'Could not find the requested service' in openvpn_exporter_restart.msg | default(''))
